@@ -95,7 +95,7 @@
                         @click="addNewUser && registerUser"
                         v-bind:disabled="!isDisabled"
                         type="submit"
-                        class="btn btn-success btn-lg"
+                        class="btn btn-success btn-lg , button-right"
                       >
                         Регистрация
                       </button>

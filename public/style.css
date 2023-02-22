@@ -209,9 +209,11 @@ body, input {
     margin:auto;
   }
 
-  .button-add{
+  .button-add,
+  .button-right{
     margin-left:15px;
   }
+
 
   ::-webkit-input-placeholder {color:#a9a9a9}
   ::-moz-placeholder          {color:#a9a9a9}
