@@ -17,9 +17,7 @@
         <div class="admin-dashboard">
           Добро пожаловать в учетную запись {{ NaMe }}!
               
-          <div>
-            <div id="lvTable">
-              
+            <div id="lvTable" class="lvTable">              
                   <table>
                     <thead> 
                       <tr> 
@@ -41,7 +39,6 @@
                     </table>
                     <button class="btn btn-success btn-lg" @click="addNewRow()" title="Добавить строку в таблицу">Добавить строку</button>
             </div>
-          </div>
 
         </div>
       </div>
@@ -52,7 +49,7 @@
               <div class="dialog-exit-content" @click.stop>
                     <div class="dialog-head" style="color:red">Вы точно желаете выйти?</div>
                     <br>
-                    <div class="exit-button">
+                    <div class="exit-button-exit">
                       <button class="btn btn-success" @click="AcceptExit()">Да</button>
                       <button class="btn btn-success" @click="HideDialog()">Нет</button>
                     </div>

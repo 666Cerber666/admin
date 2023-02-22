@@ -27,21 +27,23 @@
                 />
               </div>
                 <transition name="fade">
-                  <span class="error" v-if="isVisible" >Логтин или пароль неверные. Попробуйте еще раз</span>
+                  <span class="error" v-if="isVisible" >Логин или пароль неверные. Попробуйте еще раз</span>
                 </transition>
-              <button
-                @click="loginUser"
-                v-bind:disabled="!isDisabledLogin"
-                type="submit"
-                class="btn btn-success btn-lg"
-              >
-                Вход
-              </button>
-                <span class="spanReg" @click="RegisterPage">Еще не зарегестрированны?</span>
-                <br>
-                <div v-for="name in tbUser" :key="name.id">
-                    
-                      </div>
+                <div class="exit-button">
+                    <button
+                      @click="loginUser"
+                      v-bind:disabled="!isDisabledLogin"
+                      type="submit"
+                      class="btn btn-success btn-lg"
+                    >
+                      Вход
+                    </button>
+                      <span class="spanReg" @click="RegisterPage">Еще не зарегестрированны?</span>
+                      <br>
+                      <div v-for="name in tbUser" :key="name.id">
+                          
+                            </div>
+                </div>
             </form>
           </div>
         </div>
@@ -89,17 +91,20 @@
                         />
                       </div>
 
-                      <button class="btn btn-success btn-lg" @click="cancelReg"> Отмена регистрации </button>
+                      <div class="exit-button">
 
-                      <button
-                        @click="addNewUser && registerUser"
-                        v-bind:disabled="!isDisabled"
-                        type="submit"
-                        class="btn btn-success btn-lg , button-right"
-                      >
-                        Регистрация
-                      </button>
+                        <button class="btn btn-success btn-lg" @click="cancelReg"> Отмена регистрации </button>
 
+                        <button
+                          @click="addNewUser && registerUser"
+                          v-bind:disabled="!isDisabled"
+                          type="submit"
+                          class="btn btn-success btn-lg , button-reg"
+                        >
+                          Регистрация
+                        </button>
+
+                      </div>
                   </form>
                 </div>
             </div>
@@ -178,7 +183,7 @@ export default {
     },
     loginUser() {
       if(this.name === this.NaMe && this.pass === this.PaSs)
-      this.$router.push('/AdminPanel')
+      this.$router.push('/Dashboard')
       else
       console.log(this.tbUser.name)
       this.isVisible = true

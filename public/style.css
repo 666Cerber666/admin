@@ -23,10 +23,6 @@
     display:flex;
 }
 
-.spanReg{
-  margin-left:25%;
-}
-
 .spanReg:hover{
   color:darkcyan;
   cursor:pointer;
@@ -90,6 +86,7 @@
     display:flex;
     flex-direction: column;
     align-items: center;
+    width:100%;
 }
 
 body, input { 
@@ -138,12 +135,12 @@ body, input {
   
   .slider{
     border-bottom:3px solid #a9a9a9;
-    width:1200px;
     height:600px;
+    box-sizing: border-box;
   }
   
   .node-add-space{
-    width:1200px;
+    box-sizing: border-box;
     height:300px;
   }
 
@@ -151,16 +148,25 @@ body, input {
     border-left:3px solid #a9a9a9;
     width:450px;
     height:100%;
+    display:flex;
+    flex-direction: column;
   }
 
   .node{
     background-color: #a9a9a9;
     border-bottom:2px solid #fff;
     width:450px;
+    padding:5px;
+    word-wrap: break-word;
   }
 
   .dashboard{
     display:flex;
+    width:100%;
+  }
+
+  .dashboard-left{
+    width:100%;
   }
 
   .dialog{
@@ -197,6 +203,11 @@ body, input {
 
   .exit-button{
     display:flex;
+    justify-content: space-between;
+  }
+
+  .exit-button-exit{
+    display:flex;
     justify-content: space-evenly;
   }
 
@@ -225,3 +236,49 @@ body, input {
   :focus::-moz-placeholder          {color: transparent}
   :focus:-moz-placeholder           {color: transparent}
   :focus:-ms-input-placeholder      {color: transparent}
+
+ @media screen and (max-width:1200px) {
+    .exit-button{
+      flex-direction: column;
+    }
+    .spanReg{
+      margin-top:25px;
+    }
+  }
+
+@media screen and (max-width:1400px) {
+  .exit-button{
+    flex-direction: column;
+  }
+  .button-reg{
+    margin-top:25px;
+  }
+  .spanReg{
+    margin-top:25px;
+  }
+  .lvTable{
+    width:100%;
+  }
+  table{
+    width:100%;
+    margin:20px;
+  }
+  .admin-dashboard,
+  .admin-body{
+    width:100%;
+    padding:20px;
+  }
+  tr{
+    width:100%;
+  }
+  input{
+    width:100%;
+  }
+  .slider{
+    box-sizing: border-box;
+    width:100%;
+  }
+  .node{
+    box-sizing: border-box;
+  }
+}
