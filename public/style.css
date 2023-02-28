@@ -201,14 +201,25 @@ body, input {
     justify-content: space-between;
   }
 
-  .exit-button{
+  .button-pagenumber{
     display:flex;
-    justify-content: space-between;
+    justify-content:space-evenly;
+    width:55%;
+    margin-top:15px;
+  }
+  
+  .spanError{
+    color:red;
   }
 
   .exit-button-exit{
     display:flex;
     justify-content: space-evenly;
+  }
+
+  .exit-button{
+    display:flex;
+    justify-content: space-between;
   }
 
   textarea{

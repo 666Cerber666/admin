@@ -29,15 +29,29 @@
                     </thead>
                     <tbody>
                       <transition-group name="fade"> 
-                      <tr v-for="(entry, index) in tbData" :key="entry.id"> 
+                      <tr v-for="(entry, index) in paginatedData" :key="entry.id"> 
                         <td style="text-align:center"><b>{{index + 1}}</b></td> 
                         <td><input class="th180" v-model="entry['name']" placeholder="Имя пользователя"></td> 
-                        <td><input class="th60" v-model="entry['count']" type="tel" placeholder="Номер телефона"></td> 
+                        <td><input class="th60" v-model="entry['count']" v-imask="phoneNumberMask" type="tel" placeholder="Номер телефона"></td> 
                         <td class="th-3"><button class="btn btn-success" v-if="tbData.length > 1" @click="delRow(index)">Удалить строку</button></td> 
                       </tr>
                     </transition-group></tbody>
                     </table>
-                    <button class="btn btn-success btn-lg" @click="addNewRow()" title="Добавить строку в таблицу">Добавить строку</button>
+                    <div class="button-pagenumber">
+                        <button class="btn btn-success btn-lg" @click="addNewRow()">Добавить строку</button>
+                        <button 
+                        class="btn btn-success btn-lg"
+                            :disabled="pageNumber === 0" 
+                            @click="prevPage">
+                            Предыдущая 
+                        </button>
+                        <button 
+                        class="btn btn-success btn-lg"
+                            :disabled="pageNumber >= pageCount -1" 
+                            @click="nextPage">
+                            Следующая ->
+                        </button>
+                    </div>
             </div>
 
         </div>
@@ -53,28 +67,59 @@
                       <button class="btn btn-success" @click="AcceptExit()">Да</button>
                       <button class="btn btn-success" @click="HideDialog()">Нет</button>
                     </div>
-            </div>
+              </div>
           </div>
       </transition-group>
 
   </template>
   
   <script>
+  import {IMaskDirective} from 'vue-imask'
 
   export default({
     el: '#lvTable',
         data(){
         return {
+          pageNumber: 0,
           NaMe: "admin",
           IsVisibleDialog: false,
           tbData: [ 
-            { name: '', count: '+7' }
-          ]
+            { name: '', count: '+7'}
+          ],
+          phoneNumberMask: {
+            mask: '+{7}(000)000-00-00',
+            lazy: true
+          }
         }
+        },
+        props:{
+            listData:{
+              type:Array,
+              required:true
+            },
+            size:{
+              type:Number,
+              required:false,
+              default: 9
+            }
+        },
+        computed:{
+          pageCount(){
+                let l = this.tbData.length,
+                    s = this.size;
+                return Math.ceil(l/s);
+          },
+          paginatedData(){
+              const start = this.pageNumber * this.size,
+                    end = start + this.size;
+              return this.tbData.slice(start, end);
+          }
         },
         methods: {
           addNewRow() { 
-            this.tbData.push({ name: '', count: '+7' });
+            this.tbData.push({ name: '', count: '+7'});
+            if(this.tbData.length === 10)
+            this.nextPage()
           },
           delRow(index) { 
             this.tbData.splice(index, 1);
@@ -94,6 +139,15 @@
           HideDialog(){
               this.IsVisibleDialog = false
             },
+            nextPage(){
+            this.pageNumber++;
+          },
+          prevPage(){
+            this.pageNumber--;
+          }
+        },
+        directives:{
+          imask: IMaskDirective
         }
       })
 
