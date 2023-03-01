@@ -22,8 +22,7 @@
       </div>
       <div class="admin-body">
         <div class="admin-dashboard">
-          Добро пожаловать в учетную запись {{ NaMe }}!
-              
+          Добро пожаловать в учетную запись {{ NaMe }}!  
             <div id="lvTable" class="lvTable">              
                   <table>
                     <thead> 
