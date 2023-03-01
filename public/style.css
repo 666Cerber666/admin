@@ -29,7 +29,7 @@
 }
 
 .admin-bar{
-    min-height:1000px;
+    height:1000px;
     width:250px;
     background-color: darkcyan;
     display:flex;
@@ -236,12 +236,28 @@ body, input {
     margin-left:15px;
   }
 
+  .burger{
+    width:25px;
+    height:25px;
+    box-sizing: border-box;
+  }
+
   .admin-burger{
     width:25px;
     height:25px;
     position:fixed;
-    background-color: aqua;
     display:none;
+    margin:15px;
+  }
+
+  .active{
+    display:flex;
+  }
+
+  .bar-mobile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 
@@ -273,6 +289,40 @@ body, input {
   .admin-burger{
     display:block
   }
+  .admin-bar{
+    display:none;
+  }
+  .active{
+    display:flex;
+  }
+  .dashboard{
+    display:flex;
+    flex-direction: column;
+  }
+  .bar{
+    height:100%;
+    position:sticky;
+    top:0;
+  }
+  .slider{
+    height:100%;
+  }
+  .bar-mobile{
+    position:sticky; 
+    top:0;
+  }
+  .dashboard-left{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nodelist,
+  .node{
+    width:100%;
+  }
+  .button-pagenumber{
+    width:100%;
+  }
 }
 
 @media screen and (max-width:1400px) {
@@ -287,6 +337,8 @@ body, input {
   }
   .lvTable{
     width:100%;
+    display:flex;
+    flex-direction: column;
   }
   table{
     width:100%;
@@ -296,6 +348,8 @@ body, input {
   .admin-body{
     width:100%;
     padding:20px;
+    display:flex;
+    flex-direction: column;
   }
   tr{
     width:100%;

@@ -1,21 +1,25 @@
 <template>
   <div class="admin-panel">
-    <div class="admin-burger" @click.prevent='BurgerMenuToggle'></div>
-        <transition-group name="fade">
-          <div class="admin-bar" v-if="BurgerMenuOn">
-                <div><p class="logo">Admin</p></div>
-                <div class="line"></div>
-                  <div class="first_nav" 
-                    @click="DashBoard"
-                    ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
-                    <div class="but-exit"
-                    @click="LogIn">
-                    <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
-                    <div class="but-exit"
-                    @click="OpenDialogExit"
-                    ><img class="exit" src="../assets/arrow-left-svgrepo-com.svg">Выход</div>
-        </div>
-      </transition-group>
+    <div class="bar">
+        <div class="admin-burger" @click='BurgerMenuToggle'><img class="burger" src="../assets/burger-menu-svgrepo-com.svg"></div>
+          <transition-group name="fade">
+            <div class="admin-bar" v-if="BurgerMenuOn" :class="{ active: isActive}">
+              <div class="bar-mobile">
+                  <div><p class="logo">Admin</p></div>
+                  <div class="line"></div>
+                    <div class="first_nav" 
+                      @click="Dashboard"
+                      ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
+                      <div class="but-exit"
+                      @click="LogIn">
+                      <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
+                      <div class="but-exit"
+                      @click="openExitDialog"
+                      ><img class="exit" src="../assets/arrow-left-svgrepo-com.svg">Выход</div>
+                </div>
+          </div>
+        </transition-group>
+      </div>
       <div class="admin-body">
         <div class="admin-dashboard">
           Добро пожаловать в учетную запись {{ NaMe }}!
@@ -92,7 +96,10 @@
           phoneNumberMask: {
             mask: '+{7}(000)000-00-00',
             lazy: true
-          }
+          },
+          BurgerMenuOn: true,
+          isActive: true,
+          small: false,
         }
         },
         props:{
@@ -119,6 +126,13 @@
           }
         },
         methods: {
+          BurgerMenuToggle(){
+              this.BurgerMenuOn = !this.BurgerMenuOn,
+              this.isActive = !this.isActive
+            },
+            onResize() {
+                this.small = window.innerWidth <= 820;
+            },
           addNewRow() { 
             this.tbData.push({ name: '', count: '+7'});
             if(this.tbData.length === 10)
@@ -133,7 +147,7 @@
           Dashboard(){
             this.$router.push('/Dashboard')
           },
-          AdminPanel(){
+          LogIn(){
             this.$router.push('/AdminPanel')
           },
           openExitDialog(){
