@@ -1,18 +1,21 @@
 <template>
   <div class="admin-panel">
-      <div class="admin-bar">
-            <div><p class="logo">Admin</p></div>
-            <div class="line"></div>
-              <div class="first_nav"
-                @click="Dashboard">
-                  <img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
-                <div class="but-exit"
-                @click="AdminPanel">
-                <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
-                <div class="but-exit"
-                @click="openExitDialog"
-                ><img class="exit" src="../assets/arrow-left-svgrepo-com.svg">Выход</div>
-      </div>
+    <div class="admin-burger" @click.prevent='BurgerMenuToggle'></div>
+        <transition-group name="fade">
+          <div class="admin-bar" v-if="BurgerMenuOn">
+                <div><p class="logo">Admin</p></div>
+                <div class="line"></div>
+                  <div class="first_nav" 
+                    @click="DashBoard"
+                    ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
+                    <div class="but-exit"
+                    @click="LogIn">
+                    <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
+                    <div class="but-exit"
+                    @click="OpenDialogExit"
+                    ><img class="exit" src="../assets/arrow-left-svgrepo-com.svg">Выход</div>
+        </div>
+      </transition-group>
       <div class="admin-body">
         <div class="admin-dashboard">
           Добро пожаловать в учетную запись {{ NaMe }}!

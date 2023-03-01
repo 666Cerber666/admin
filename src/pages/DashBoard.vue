@@ -1,18 +1,21 @@
 <template>
     <div class="admin-panel">
-        <div class="admin-bar">
-              <div><p class="logo">Admin</p></div>
-              <div class="line"></div>
-                <div class="first_nav" 
-                  @click="DashBoard"
-                  ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
-                  <div class="but-exit"
-                  @click="LogIn">
-                  <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
-                  <div class="but-exit"
-                  @click="OpenDialogExit"
-                  ><img class="exit" src="../assets/arrow-left-svgrepo-com.svg">Выход</div>
+        <div class="admin-burger" @click.prevent='BurgerMenuToggle'></div>
+        <transition-group name="fade">
+          <div class="admin-bar" v-if="BurgerMenuOn">
+                <div><p class="logo">Admin</p></div>
+                <div class="line"></div>
+                  <div class="first_nav" 
+                    @click="DashBoard"
+                    ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
+                    <div class="but-exit"
+                    @click="LogIn">
+                    <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
+                    <div class="but-exit"
+                    @click="OpenDialogExit"
+                    ><img class="exit" src="../assets/arrow-left-svgrepo-com.svg">Выход</div>
         </div>
+      </transition-group>
           <div class="dashboard">
               <div class="dashboard-left">
                 <div class="slider">    
@@ -130,6 +133,8 @@
             IsVisibleDialog: false,
             IsVisibleDialogExit: false,
             newNodeText: '',
+            BurgerMenuOn: true,
+            small: false,
               tbNodes: [
                 {
                   id: 1,
@@ -148,6 +153,12 @@
           }
           },
           methods: {
+            BurgerMenuToggle(){
+              if(this.BurgerMenuOn)
+              this.BurgerMenuOn = false
+              else
+              this.BurgerMenuOn = true
+            },
             OpenDialogExit(){
               this.IsVisibleDialogExit = true
             },
@@ -178,9 +189,13 @@
             },
             delNode(index){
               this.tbNodes.splice(index, 1);
+            },
+            onResize() {
+                this.small = window.innerWidth <= 820;
             }
-          }
+          },
         })
+        
   
     </script>
     
