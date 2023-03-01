@@ -170,9 +170,15 @@
             },
             LogIn(){
               this.$router.push('/AdminPanel')
+              if(window.innerWidth <= 820)
+              this.isActive = false,
+              this.BurgerMenuOn = false
             },
             DashBoard(){
               this.$router.push('/Dashboard')
+              if(window.innerWidth <= 820)
+              this.isActive = false,
+              this.BurgerMenuOn = false
             },
             OpenDialog(){
               this.IsVisibleDialog = true
@@ -194,8 +200,15 @@
               this.tbNodes.splice(index, 1);
             },
             onResize() {
-                this.small = window.innerWidth <= 820;
+              this.small = window.innerWidth <= 820;
             }
+          },
+          created() {
+            window.addEventListener('resize', this.onResize);
+            this.onResize();
+          },
+          unmounted() {
+            window.removeEventListener('resize', this.onResize)
           },
         })
         
