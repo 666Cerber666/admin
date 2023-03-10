@@ -145,15 +145,9 @@
           },
           Dashboard(){
             this.$router.push('/Dashboard')
-            if(window.innerWidth <= 820)
-            this.isActive = false,
-            this.BurgerMenuOn = false
           },
           LogIn(){
             this.$router.push('/AdminPanel')
-            if(window.innerWidth <= 820)
-            this.isActive = false,
-            this.BurgerMenuOn = false
           },
           openExitDialog(){
             this.IsVisibleDialog = true

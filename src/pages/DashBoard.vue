@@ -170,15 +170,9 @@
             },
             LogIn(){
               this.$router.push('/AdminPanel')
-              if(window.innerWidth <= 820)
-              this.isActive = false,
-              this.BurgerMenuOn = false
             },
             DashBoard(){
               this.$router.push('/Dashboard')
-              if(window.innerWidth <= 820)
-              this.isActive = false,
-              this.BurgerMenuOn = false
             },
             OpenDialog(){
               this.IsVisibleDialog = true
