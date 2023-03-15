@@ -3,15 +3,15 @@
     <div class="bar">
         <div class="admin-burger" @click='BurgerMenuToggle'><img class="burger" src="../assets/burger-menu-svgrepo-com.svg"></div>
           <transition-group name="fade">
-            <div class="admin-bar" v-if="BurgerMenuOn" :class="{ active: isActive}">
+            <div class="admin-bar" v-if="BurgerMenuOn" :class="{ activeTable: isActive}">
               <div class="bar-mobile">
                   <div><p class="logo">Admin</p></div>
                   <div class="line"></div>
                     <div class="first_nav" 
-                      @click="Dashboard"
+                      @click="Dashboard(),BurgerMenuToggle()"
                       ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
                       <div class="but-exit"
-                      @click="LogIn">
+                      @click="LogIn(),BurgerMenuToggle()">
                       <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
                       <div class="but-exit"
                       @click="openExitDialog"
@@ -44,15 +44,15 @@
                     </transition-group></tbody>
                     </table>
                     <div class="button-pagenumber">
-                        <button class="btn btn-success btn-lg" @click="addNewRow()">Добавить строку</button>
+                        <button class="btn btn-success btn" @click="addNewRow()">Добавить строку</button>
                         <button 
-                        class="btn btn-success btn-lg"
+                        class="btn btn-success btn"
                             :disabled="pageNumber === 0" 
                             @click="prevPage">
                             Предыдущая 
                         </button>
                         <button 
-                        class="btn btn-success btn-lg"
+                        class="btn btn-success btn"
                             :disabled="pageNumber >= pageCount -1" 
                             @click="nextPage">
                             Следующая ->

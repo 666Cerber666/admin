@@ -8,10 +8,10 @@
                   <div><p class="logo">Admin</p></div>
                   <div class="line"></div>
                     <div class="first_nav" 
-                      @click="DashBoard"
+                      @click="DashBoard(),BurgerMenuToggle()"
                       ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
                       <div class="but-exit"
-                      @click="LogIn">
+                      @click="LogIn(),BurgerMenuToggle()">
                       <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
                       <div class="but-exit"
                       @click="OpenDialogExit"
