@@ -159,6 +159,7 @@
           },
           methods: {
             BurgerMenuToggle(){
+              if(window.innerWidth <= 820)
               this.BurgerMenuOn = !this.BurgerMenuOn,
               this.isActive = !this.isActive
             },
