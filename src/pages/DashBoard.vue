@@ -1,25 +1,6 @@
 <template>
     <div class="admin-panel">
-      <div class="bar">
-        <div class="admin-burger" @click='BurgerMenuToggle'><img class="burger" src="../assets/burger-menu-svgrepo-com.svg"></div>
-          <transition-group name="fade">
-            <div class="admin-bar" v-if="BurgerMenuOn" :class="{ active: isActive}">
-              <div class="bar-mobile">
-                  <div><p class="logo">Admin</p></div>
-                  <div class="line"></div>
-                    <div class="first_nav" 
-                      @click="DashBoard(),BurgerMenuToggle()"
-                      ><img class="exit" src="../assets/cube-outline-svgrepo-com.svg">Главная</div>
-                      <div class="but-exit"
-                      @click="LogIn(),BurgerMenuToggle()">
-                      <img class="user" src="../assets/user-identity-svgrepo-com.svg">Пользователи</div>
-                      <div class="but-exit"
-                      @click="OpenDialogExit"
-                      ><img class="exit" src="../assets/arrow-left-svgrepo-com.svg">Выход</div>
-                </div>
-          </div>
-        </transition-group>
-      </div>
+      <burger-menu></burger-menu>
           <div class="dashboard">
               <div class="dashboard-left">
                 <div class="slider">    
@@ -114,7 +95,7 @@
                     <button class="btn btn-success" @click="addNewNode()">Сохранить</button>
             </div>
           </div>
-
+      <dialog-exit v-if="IsVisibleDialogExit"></dialog-exit>
           <div class='dialog' v-if="IsVisibleDialogExit" @click="HideDialogExit"> 
               <div class="dialog-exit-content" @click.stop>
                     <div class="dialog-head" style="color:red">Вы точно желаете выйти?</div>
@@ -130,85 +111,70 @@
     </template>
     
     <script>
-  
-    export default({
-          data(){
-          return {
-            IsVisibleDialog: false,
-            IsVisibleDialogExit: false,
-            newNodeText: '',
-            BurgerMenuOn: true,
-            isActive: true,
-            small: false,
-              tbNodes: [
-                {
-                  id: 1,
-                  name: 'Помыть кота'
-                },
-                {
-                  id: 2,
-                  name: 'Покормить кота'
-                },
-                {
-                  id: 3,
-                  name: 'Покорить кота'
-                }
-              ],
-              nextNodeId: 4
-          }
-          },
-          methods: {
-            BurgerMenuToggle(){
-              if(window.innerWidth <= 820)
-              this.BurgerMenuOn = !this.BurgerMenuOn,
-              this.isActive = !this.isActive
-            },
-            OpenDialogExit(){
-              this.IsVisibleDialogExit = true
-            },
-            AcceptExit(){
-              this.$router.push('/')
-            },
-            LogIn(){
-              this.$router.push('/AdminPanel')
-            },
-            DashBoard(){
-              this.$router.push('/Dashboard')
-            },
-            OpenDialog(){
-              this.IsVisibleDialog = true
-            },
-            HideDialog(){
-              this.IsVisibleDialog = false
-            },
-            HideDialogExit(){
-              this.IsVisibleDialogExit = false
-            },
-            addNewNode() {
-              this.tbNodes.push({
-                id: this.nextNodeId++,
-                name: this.newNodeText
-              })
-              this.newNodeText = ''
-            },
-            delNode(index){
-              this.tbNodes.splice(index, 1);
-            },
-            onResize() {
-              this.small = window.innerWidth <= 820;
-            }
-          },
-          created() {
-            window.addEventListener('resize', this.onResize);
-            this.onResize();
-          },
-          unmounted() {
-            window.removeEventListener('resize', this.onResize)
-          },
-        })
-        
-  
-    </script>
+export default {
+  data() {
+    return {
+      IsVisibleDialog: false,
+      IsVisibleDialogExit: false,
+      newNodeText: '',
+      isActive: true,
+      small: false,
+      tbNodes: [
+        {
+          id: 1,
+          name: 'Помыть кота'
+        },
+        {
+          id: 2,
+          name: 'Покормить кота'
+        },
+        {
+          id: 3,
+          name: 'Покорить кота'
+        }
+      ],
+      nextNodeId: 4
+    }
+  },
+  methods: {
+    OpenDialogExit() {
+      this.IsVisibleDialogExit = true
+    },
+    AcceptExit() {
+      this.$router.push('/')
+    },
+    OpenDialog() {
+      this.IsVisibleDialog = true
+    },
+    HideDialog() {
+      this.IsVisibleDialog = false
+    },
+    HideDialogExit() {
+      this.IsVisibleDialogExit = false
+    },
+    addNewNode() {
+      this.tbNodes.push({
+        id: this.nextNodeId++,
+        name: this.newNodeText
+      })
+      this.newNodeText = ''
+    },
+    delNode(index) {
+      this.tbNodes.splice(index, 1);
+    },
+    onResize() {
+      this.small = window.innerWidth <= 820;
+    }
+  },
+  created() {
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.onResize)
+  },
+}
+</script>
     
     <style>
     
